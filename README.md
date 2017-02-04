@@ -4,7 +4,7 @@ This is an implementation of a markov chain text generator in python, used to ge
 
 ## Usage
 
-Simply run `scrape_simpsons.py` from root to scrape all imdb simpsons synopses, generate a markov chain, and use that markov chain to produce 10 new simpsons plot summaries.
+Simply run `python3 scrape_simpsons.py` from root to scrape all imdb simpsons synopses, generate a markov chain, and use that markov chain to produce 10 new simpsons plot summaries.
 
 ## /markov
 
