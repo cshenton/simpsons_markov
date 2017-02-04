@@ -36,14 +36,17 @@ class Chain:
         self.token_hash = {}
         self.depth = depth
 
-    def update(self, token, result):
+    def update(self, new_token, value):
         """
-        token: a tuple of strings of lenth `self.depth`
-        result: a string
+        new_token: a tuple of strings of lenth `self.depth`
+        value: a string
 
-        updates the token hash based on the token - result pair
+        updates the token hash based on the token - value pair
         """
-
+        if new_token in self.token_hash.keys():
+            token_hash[new_token].update(value)
+        else:
+            token_hash[new_token] = Distribution(value)
 
 
     def simulate(self, start=None):
@@ -53,12 +56,3 @@ class Chain:
         generates a string based on the
         """
         pass
-
-
-
-
-{'foo': 0.8, 'bar', 0.2}
-
-
-self.obs*prob
-self.obs+1
