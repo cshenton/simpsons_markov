@@ -3,9 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 from markov import Chain
 
-# Initialise markov chain
-
-simpsons_synopsis = Chain(3)
+simpsons_synopsis = Chain(2)
 
 for year in range(1990,2017):
     url_base = 'http://www.imdb.com/title/tt0096697/episodes?year='
