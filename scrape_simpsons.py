@@ -15,3 +15,6 @@ for year in range(1990,2017):
     descriptions = [div.string.strip() for div in item_divs if div.string is not None]
     for desc in descriptions:
         simpsons_synopsis.add_passage(desc)
+
+for i in range(10):
+    print(' '.join(simpsons_synopsis.simulate()))
