@@ -49,30 +49,28 @@ class Chain:
             pass
 
         if new_token in self.token_hash.keys():
-            token_hash[new_token].update(value)
+            self.token_hash[new_token].update(value)
         else:
-            token_hash[new_token] = Distribution(value)
+            self.token_hash[new_token] = Distribution(value)
 
         if start:
             self.starts += [new_token]
 
     def add_passage(self, passage):
-    """
-    Updates the provided Chain with the supplied passage.
-    """
+        """
+        Updates the provided Chain with the supplied passage.
+        """
+        tokens = passage.split()
+        token_dict = {}
+        depth = self.depth
 
-    tokens = passage.split()
-    token_dict = {}
-    depth = self.depth
+        for i in range(len(tokens)-depth+1):
+            is_start = (i == 0)
 
-    for i in range(len(tokens)-depth+1):
-        if i == 0:
-            is_start = True
-
-        if i < len(tokens)-depth:
-            self.update(tuple(tokens[i:(i+depth)]), tokens[i+depth], is_start)
-        else:
-            self.update(tuple(tokens[i:(i+depth)]), None, is_start)
+            if i < len(tokens)-depth:
+                self.update(tuple(tokens[i:(i+depth)]), tokens[i+depth], is_start)
+            else:
+                self.update(tuple(tokens[i:(i+depth)]), None, is_start)
 
     def simulate(self, start=None):
         """
@@ -81,10 +79,10 @@ class Chain:
         Generates a passage based on the Chains token hash
         """
         if start is None:
-            current = choice(self.starts)
-        elif start not in self.starts
+            current = self.starts[choice(len(chain.starts))]
+        elif start not in self.starts:
             # later, throw exception
-            current = choice(self.starts)
+            current = self.starts[choice(len(chain.starts))]
         else:
             current = start
 
@@ -93,7 +91,7 @@ class Chain:
 
         while new_string is not None:
             passage += [new_string]
-            current = tuple(passage[-depth:])
+            current = tuple(passage[-self.depth:])
             new_string = self.token_hash[current].choose()
 
         return passage
