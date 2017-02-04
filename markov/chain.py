@@ -35,18 +35,26 @@ class Chain:
     def __init__(self, depth):
         self.token_hash = {}
         self.depth = depth
+        self.starts = []
 
-    def update(self, new_token, value):
+    def update(self, new_token, value, start=False):
         """
         new_token: a tuple of strings of lenth `self.depth`
         value: a string
 
         updates the token hash based on the token - value pair
         """
+        if len(new_token) != self.depth:
+            # throw exception
+            pass
+
         if new_token in self.token_hash.keys():
             token_hash[new_token].update(value)
         else:
             token_hash[new_token] = Distribution(value)
+
+        if start:
+            self.starts += [new_token]
 
     def simulate(self, start=None):
         """
@@ -55,11 +63,10 @@ class Chain:
         Generates a passage based on the Chains token hash
         """
         if start is None:
-            # Choose a random start tuple
-            current = ...
-        elif start not in self.token_hash.keys()
-            # throw exception
-            pass
+            current = choice(self.starts)
+        elif start not in self.starts
+            # later, throw exception
+            current = choice(self.starts)
         else:
             current = start
 
