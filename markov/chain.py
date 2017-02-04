@@ -56,6 +56,24 @@ class Chain:
         if start:
             self.starts += [new_token]
 
+    def add_passage(self, passage):
+    """
+    Updates the provided Chain with the supplied passage.
+    """
+
+    tokens = passage.split()
+    token_dict = {}
+    depth = self.depth
+
+    for i in range(len(tokens)-depth+1):
+        if i == 0:
+            is_start = True
+
+        if i < len(tokens)-depth:
+            self.update(tuple(tokens[i:(i+depth)]), tokens[i+depth], is_start)
+        else:
+            self.update(tuple(tokens[i:(i+depth)]), None, is_start)
+
     def simulate(self, start=None):
         """
         start: a token in the Chain's token_hash to start with

@@ -22,6 +22,18 @@ def add_passage(chain, passage):
     """
     Updates the provided Chain with the supplied passage.
     """
-    pass
+
+    tokens = passage.split()
+    token_dict = {}
+    depth = chain.depth
+
+    for i in range(len(tokens)-depth+1):
+        if i == 0:
+            is_start = True
+
+        if i < len(tokens)-depth:
+            chain.update(tuple(tokens[i:(i+depth)]), tokens[i+depth], is_start)
+        else:
+            chain.update(tuple(tokens[i:(i+depth)]), None, is_start)
 
 
