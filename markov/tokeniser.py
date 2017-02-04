@@ -17,3 +17,11 @@ def tokenise(passage, depth):
             token_dict[tuple(tokens[i:(i+depth)])] = None
 
     return token_dict
+
+def add_passage(chain, passage):
+    """
+    Updates the provided Chain with the supplied passage.
+    """
+    pass
+
+

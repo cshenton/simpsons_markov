@@ -48,11 +48,27 @@ class Chain:
         else:
             token_hash[new_token] = Distribution(value)
 
-
     def simulate(self, start=None):
         """
         start: a token in the Chain's token_hash to start with
 
-        generates a string based on the
+        Generates a passage based on the Chains token hash
         """
-        pass
+        if start is None:
+            # Choose a random start tuple
+            current = ...
+        elif start not in self.token_hash.keys()
+            # throw exception
+            pass
+        else:
+            current = start
+
+        passage = list(current)
+        new_string = self.token_hash[current].choose()
+
+        while new_string is not None:
+            passage += [new_string]
+            current = tuple(passage[-depth:])
+            new_string = self.token_hash[current].choose()
+
+        return passage
