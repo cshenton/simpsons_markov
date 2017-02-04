@@ -79,10 +79,10 @@ class Chain:
         Generates a passage based on the Chains token hash
         """
         if start is None:
-            current = self.starts[choice(len(chain.starts))]
+            current = self.starts[choice(len(self.starts))]
         elif start not in self.starts:
             # later, throw exception
-            current = self.starts[choice(len(chain.starts))]
+            current = self.starts[choice(len(self.starts))]
         else:
             current = start
 
