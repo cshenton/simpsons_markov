@@ -45,9 +45,7 @@ class Chain:
         updates the token hash based on the token - value pair
         """
         if len(new_token) != self.depth:
-            # throw exception
-            pass
-
+            raise ValueError('Token length did not match markov chain depth')
         if new_token in self.token_hash.keys():
             self.token_hash[new_token].update(value)
         else:
@@ -81,8 +79,7 @@ class Chain:
         if start is None:
             current = self.starts[choice(len(self.starts))]
         elif start not in self.starts:
-            # later, throw exception
-            current = self.starts[choice(len(self.starts))]
+            raise ValueError('Invalid starting token')
         else:
             current = start
 
